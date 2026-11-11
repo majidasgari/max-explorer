@@ -1,0 +1,39 @@
+[package]
+name = "max-explorer-app"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "max-explorer"
+path = "src/main.rs"
+
+[[bin]]
+name = "max-explorer-helper"
+path = "src/bin/cefsimple_helper.rs"
+
+[features]
+default = ["linux-x11"]
+linux-x11 = ["x11-dl"]
+
+[package.metadata.cef.bundle]
+helper_name = "max-explorer-helper"
+
+[dependencies]
+cef = { version = "156.4.0", default-features = false, features = ["build-util"] }
+max-explorer-core = { path = "../core" }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+x11-dl = { version = "2", optional = true }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-foundation = "0.3"
+objc2-app-kit = { version = "0.3", features = [
+  "NSApplication",
+  "NSEvent",
+  "NSResponder",
+  "NSUserInterfaceValidation",
+  "NSView",
+  "NSWindow",
+] }
