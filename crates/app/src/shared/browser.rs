@@ -430,6 +430,10 @@ wrap_window_delegate! {
             0
         }
 
+        fn initial_show_state(&self, _window: Option<&mut Window>) -> ShowState {
+            ShowState::NORMAL
+        }
+
         fn initial_bounds(&self, _window: Option<&mut Window>) -> Rect {
             Rect { x: 0, y: 0, width: 1200, height: 800 }
         }

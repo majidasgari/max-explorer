@@ -82,6 +82,7 @@ target/debug/build/cef-dll-sys-*/out   توزیع CEF (در git نیست)
 **CEF Views — این چهار تله گران‌اند:**
 - در هر `BoxLayout` مقدار `cross_axis_alignment: AxisAlignment::STRETCH` را بگذار، وگرنه فرزندها با عرض صفر چیده می‌شوند (صفحهٔ وب دیده نمی‌شود). برای پرکردن فضای باقی‌مانده `set_flex_for_view` لازم است.
 - پنجرهٔ CEF فرزندش را خودکار به اندازهٔ پنجره نمی‌کشد؛ `initial_bounds` بده و در `on_window_bounds_changed` ریشه را `set_bounds` کن.
+- `initial_show_state` را صریح `ShowState::NORMAL` برگردان. بدون آن، پنجره با Xvfb (بدون window manager) دیده می‌شود ولی روی KWin/Wayland اسمپ‌شده می‌ماند و کاربر هیچ پنجره‌ای نمی‌بیند — باگی که فقط روی میزکار واقعی پیدا می‌شود.
 - دکمه‌های نوار تب که بعد از ساخت پنجره اضافه می‌شوند با `add_child_view_at` در جای درست بنشینند، نه ته صف.
 - در هر delegate، `impl ViewDelegate` باید **اول** بیاید و ساختار با آکولاد تعریف شود؛ شکل `struct X;` ماکرو را نمی‌سازد.
 
